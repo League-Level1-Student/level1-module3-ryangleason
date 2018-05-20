@@ -10,25 +10,50 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
- 
-/** We’re going to make a slideshow of cool optical illusions. When the user clicks on an illusion, a new one will be loaded. **/
+import javax.swing.JPanel;
+
+/**
+ * We’re going to make a slideshow of cool optical illusions. When the user
+ * clicks on an illusion, a new one will be loaded.
+ **/
 
 public class BookOfIllusions extends MouseAdapter {
 
 	/*
-	 * Here we are instantiating our BookOfIllusions class and calling it’s createBook() method. This is because we want to get out of the
-	 * static main method, so that we can add a click listener to each illusion.
+	 * Here we are instantiating our BookOfIllusions class and calling it’s
+	 * createBook() method. This is because we want to get out of the static main
+	 * method, so that we can add a click listener to each illusion.
 	 */
 
 	public static void main(String[] args) throws Exception {
+
 		BookOfIllusions illusions = new BookOfIllusions();
 		illusions.createBook();
 	}
-
+JFrame window = new JFrame();
 	// 1. Make a JFrame variable and initialize it using "new JFrame()"
-
+JPanel america = new JPanel();
+		JPanel americaRIP = new JPanel();
 	private void createBook() {
+		
+		
+		america.add(loadImageFromComputer("ThisIsGambino.png"));
+		int americaX = 0;
+		int americaY = 0;
+		int americaRIPX = 0;
+		int americaRIPY = 0;
+		Boolean gambino = true;
+		
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.isVisible();
+		window.setSize(1920, 1080);
+		window.setVisible(gambino);
+		window.add(america);
+		window.pack();
+america.addMouseListener(this);
+americaRIP.addMouseListener(this);
 		// 2. make the frame visible
 		// 3. set the size of the frame
 		// 4. find 2 images and save them to your project’s default package
@@ -41,6 +66,9 @@ public class BookOfIllusions extends MouseAdapter {
 	}
 
 	public void mousePressed(MouseEvent e) {
+		System.out.println("Clicked");
+		america.remove(loadImageFromComputer("ThisIsGambino.png"));
+		america.add(loadImageFromComputer("GambinoRUN.png"));
 		// 11. Print "clicked!" to the console when the mouse is pressed
 		// 12. remove everything from the frame that was added earlier
 		// 13. load a new image like before (this is more than one line of code)
@@ -50,7 +78,8 @@ public class BookOfIllusions extends MouseAdapter {
 	// [OPTIONAL] 15. goad your users with some annoying or witty pop-ups
 
 	/*
-	 * To use this method, the image must be placed in your Eclipse project under "default package".
+	 * To use this method, the image must be placed in your Eclipse project under
+	 * "default package".
 	 */
 	public JLabel loadImageFromComputer(String fileName) {
 		URL imageURL = getClass().getResource(fileName);
@@ -59,5 +88,3 @@ public class BookOfIllusions extends MouseAdapter {
 	}
 
 }
-
-
